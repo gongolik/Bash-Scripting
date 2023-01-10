@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# Set the name of the database
+database=mydb
+
+# Set the username and password for the database
+user=myuser
+password=mypassword
+
+# Set the location to save the backup file
+backup_dir=/path/to/backup/directory
+
+# Set the filename for the backup file
+date=$(date +"%Y-%m-%d")
+backup_file="$backup_dir/$database-$date.sql"
+
+# Dump the database to a SQL file
+mysqldump -u $user -p$password $database > $backup_file
+
+# Compress the SQL file
+gzip $backup_file
